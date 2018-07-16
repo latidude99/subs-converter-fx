@@ -1,4 +1,6 @@
-<!--/**
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
 *  Copyright (C) 2017  Piotr Czapik.
 *  @author Piotr Czapik
 *  @version 2.0
@@ -19,8 +21,6 @@
 *  or write to: latitude1001101@gmail.com
 */
 -->
-
-<?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
