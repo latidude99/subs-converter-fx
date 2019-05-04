@@ -2,7 +2,6 @@
 
 [![](https://img.shields.io/badge/release-1.0-blue.svg)](https://github.com/latidude99/snc-xml-reader-fx-db/tree/master/release)
 [![License: GPL v3](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![Build Status](https://travis-ci.com/latidude99/snc-xml-reader-fx-db.svg?branch=master)](https://travis-ci.com/latidude99/snc-xml-reader-fx-db)
 [![GitHub issues](https://img.shields.io/badge/issues-open%200-greenred.svg)](https://GitHub.com/latidude99/snc-xml-reader-fx-db/issues/)
 [![Maintenance](https://img.shields.io/badge/maintained-no-green.svg)](https://GitHub.com/latidude99/snc-xml-reader-fx-db/graphs/commit-activity)
 [![](https://img.shields.io/badge/%20$%20-buy%20me%20a%20coffe-yellow.svg)](https://www.buymeacoffee.com/zWn1I6bVf)
@@ -15,7 +14,6 @@ A UKHO Standard Navigation Chart reader with an option to display charts' covera
 * [Screenshots](#screenshots)
 * [Technologies](#technologies)
 * [Setup](#setup)
-* [Launch](#launch)
 * [Status](#status)
 * [License](#license)
 * [Contact](#contact)
@@ -45,34 +43,17 @@ When watching a movie with Polish subtitles on a system without Polish language 
 
 # Technologies
 - Java JDK 1.8
-- JavaFX 2.0
+- JavaFX 8
 - Scene Builder
 - started on Eclipse, then switched to IntelliJ IDEA. 
 
 **Plugins and libraries**
 
 - JUnit5  version 5.4.1
-- AssertJ version 3.12.2
-
-
 
 # Setup
 
 Clone the repository to a folder on your computer and import it in your favourite IDE.
-
-### Build
-
-Run - *mvn clean package* - it creates an executable .jar (with all the dependencies included) as well as a Windows .exe wrapper of the same .jar. Also, necessary folder/file structure is copied next to the executable files (*user.data* folder and its content). All of it is then packed in a ZIP file format for portability as a release version.
-
-# Launch
-### Prerequisities
-- Java JRE or JDK 1.8.0 or later
-- JavaFX if (Java 9 or later used)
-
-### Setup
-
-To start using the app download .exe file from the *release/* folder and double click it. There is no other 
-requirements.
 
 # Status
 Closed
