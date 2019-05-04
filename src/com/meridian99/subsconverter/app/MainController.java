@@ -1,22 +1,22 @@
 /**Copyright (C) 2017  Piotr Czapik.
-*  @author Piotr Czapik
-*  @version 2.0
-* 
-*  This file is part of Subs Converter.
-*  Subs Converter is free software: you can redistribute it and/or modify
-*  it under the terms of the GNU General Public License as published by
-*  the Free Software Foundation, either version 3 of the License, or
-*  (at your option) any later version.
-* 
-*  Subs Converter is distributed in the hope that it will be useful,
-*  but WITHOUT ANY WARRANTY; without even the implied warranty of
-*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-*  GNU General Public License for more details.
-* 
-*  You should have received a copy of the GNU General Public License
-*  along with Subs Converter.  If not, see <http://www.gnu.org/licenses/>
-*  or write to: latitude1001101@gmail.com
-*/
+ * @author Piotr Czapik
+ * @version 1.0
+ *
+ *  This file is part of SubsConverterFX.
+ *  SubsConverterFX is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  SubsConverterFX is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with SubsConverterFX.  If not, see <http://www.gnu.org/licenses/>
+ *  or write to: latidude99@gmail.com
+ */
 
 package com.meridian99.subsconverter.app;
 
@@ -52,8 +52,17 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 
+
+/*
+ *  Not the best processing flow (this is my first app ever):
+ *
+ *  - Subtitles file is read into a list (textIn)
+ *  - the list is converted into String and displayed (contentText)
+ *  - when replacing, the string (contentText) is converted back to list (textIn)
+ *  - then after replacing the list (textIn) is converted into String and displayed
+ *  - then the list is saved as a new file
+ */
 
 public class MainController implements Initializable{
 	
@@ -113,18 +122,12 @@ public class MainController implements Initializable{
     private Button buttonApplyContent;
     @FXML
     private Label labelDoneContent;
-   // @FXML
-   // private Button buttonApplyContent;
-   // @FXML
-   // private Label labelDoneContent;
 
-    
     private File fileOut = null;
     private File fileIn = null;
         
     private ArrayList<String> textIn =null;
-    private ArrayList<String> textOut =null;
-    
+
     Charset chIn;
 	Charset chOut;
     
@@ -135,14 +138,12 @@ public class MainController implements Initializable{
 		configureIO();
 		configureProcessing();
 		configureMouseOnText();
-		
-		
 	}
 	
 	
 	public void configureIO(){
-		//final Desktop desktop = Desktop.getDesktop();
-		
+		File fileTmp = new File(".");
+
 		buttonOpenFile.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent e){
@@ -151,9 +152,9 @@ public class MainController implements Initializable{
 				labelSaved.setText("");
 				textReplace.clear();
 				textWith.clear();
+				fileChooser.setInitialDirectory(fileTmp);
 				fileIn = fileChooser.showOpenDialog(null);
 				fileChooser.setTitle("Open subtitles file (.txt, .srt, .sub");
-				//fileChooser.setInitialDirectory(File.listRoots()[0]);
 				if(fileIn != null){
 					pathOpenFile.setText(fileIn.getAbsolutePath());
 					try {
@@ -173,52 +174,48 @@ public class MainController implements Initializable{
 				labelDone.setText("");
 				textReplace.clear();
 				textWith.clear();
+				fileChooser.setInitialDirectory(fileTmp);
 				fileChooser.setTitle("Choose location for converted subtitles");
-				//fileChooser.setInitialDirectory(File.listRoots()[0]);
 				if(fileIn != null){
 					String name = fileIn.getName();
 					fileChooser.setInitialFileName(name.substring(0, name.lastIndexOf(".")) + "_replaced"
 									+ "." + name.substring(name.lastIndexOf(".")+1, name.length()));
-					//while(fileOut == null){
 						fileOut = fileChooser.showSaveDialog(null);
-					//}
 					saveFile(fileOut);
 				} else {
 					fileChooser.setInitialFileName("_replaced.txt");
 					saveFile(fileOut);
 				}
 				fileOut = null;
-				
 			}
 		});
 	}	
 	
 	private void configureProcessing() {
-		
+
+		/*
+		 * Manual character replacement call
+		 */
 		buttonApply.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent event) {
 				labelDoneContent.setText("");
 				labelSaved.setText("");
-				//try{
 				contentToTextIn();
 					contentText.clear();
 					if(textIn != null){
 						replaceSingle(textIn);
 						contentText.setText(textInToContent(textIn));
 					}
-					
-				//}catch (NullPointerException e){
-				//	MessageBox.show("Load a file first", "Entry data error");
-				//}
-				
 			}
 		});
-		
+
+		/*
+		 * Predefined character replacement call
+		 */
 		buttonReplace.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent event) {
-				//if(contentText.getText() != null){
 				contentToTextIn();
 				if(textIn != null){
 					labelDoneContent.setText("");
@@ -228,9 +225,6 @@ public class MainController implements Initializable{
 					contentText.setText(textInToContent(replaceAll(textIn)));
 					labelDone.setText("Replaced!");
 				}
-				//}else{
-				//	MessageBox.show("No text to process", "Entry data error");
-				//}
 			}
 		});
 		
@@ -292,7 +286,6 @@ public class MainController implements Initializable{
 		labelSaved.setText("");
 		textReplace.clear();
 		textWith.clear();
-		
 	}
 		
 	private ArrayList<String> readFile(File file){
@@ -301,10 +294,9 @@ public class MainController implements Initializable{
 			try(InputStream is = new FileInputStream(file);
 				BufferedReader br = new BufferedReader(new InputStreamReader(is, chIn));) {
 				
-					String line = null;
+					String line;
 					while((line = br.readLine()) != null){
 						textIn.add(line);
-						//System.out.println(line);
 					}
 							
 			}catch(UnsupportedEncodingException e){
@@ -335,9 +327,11 @@ public class MainController implements Initializable{
 				MessageBox.show("File not saved", "Output error");
 			}
 	}
-	
+
+	/*
+	 * Predefined character replacement
+	 */
 	private ArrayList<String> replaceAll(ArrayList<String> list){
-		//contentToTextIn();
 		if(textIn == null)
 			return null;
 		textIn = (ArrayList<String>) list.stream()
@@ -349,17 +343,17 @@ public class MainController implements Initializable{
 			.replaceAll("Ż", "Z").replaceAll("Ź", "Z")
 			.replaceAll("Ć", "C").replaceAll("Ś", "S")
 			.replaceAll("Ó", "O"))
-			//.peek(s-> System.out.println(s))
-			.collect(Collectors.toList());	
+			.collect(Collectors.toList());
 		return textIn;
 	}
-	
+
+	/*
+	 * Manual character replacement
+	 */
 	private void replaceSingle(ArrayList<String> list){
-		//contentToTextIn();
 		if(textIn != null)
 		textIn = (ArrayList<String>) list.stream()
 			.map(s-> s.replaceAll(textReplace.getText(), textWith.getText()))
-			//.peek(s-> System.out.println(s))
 			.collect(Collectors.toList());
 		labelDone.setText("Done!");
 	}
@@ -421,42 +415,6 @@ public class MainController implements Initializable{
 	}
 		
 }	
-
-
-/* characters's codes
-												.map(s-> s.replaceAll("\u0105", "\u0061").replaceAll("\u0119", "\u0065")
-												.replaceAll("\u00F3", "\u006F").replaceAll("\u0142", "\u006C")
-												.replaceAll("\u0144", "\u006E").replaceAll("\u017C", "\u007A")
-												.replaceAll("\u017A", "\u007A").replaceAll("\u0107", "\u0063")
-												.replaceAll("\u015B", "\u0073").replaceAll("\u0141", "\u004C")
-												.replaceAll("\u017B", "\u005A").replaceAll("\u0179", "\u005A")
-												.replaceAll("\u0106", "\u0043").replaceAll("\u015A", "\u0053")
-												.replaceAll("\u00D3", "\u004F"))
-												.peek(s-> System.out.println(s))
-												.collect(Collectors.toList());	
-ą \u0105   a \u0061
-ę \u0119   e \u0065
-ó \u00F3   o \u006F
-ł \u0142   l \u006C
-ń \u0144   n \u006E
-ż \u017C   z \u007A
-ź \u017A   z \u007A
-ć \u0107   c \u0063
-ś \u015B   s \u0073
-
-Ł \u0141   L \u004C
-Ż \u017B   Z \u005A
-Ź \u0179   Z \u005A
-Ć \u0106   C \u0043
-Ś \u015A   S \u0053
-Ó \u00D3   O \u004F
-
-Ę \u0118   E \u0045
-Ą \u0104   A \u0041
-Ń \u0143   N \u004E
-
-
-*/
 
 
 
