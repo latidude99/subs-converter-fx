@@ -14,6 +14,7 @@ A UKHO Standard Navigation Chart reader with an option to display charts' covera
 * [Screenshots](#screenshots)
 * [Technologies](#technologies)
 * [Setup](#setup)
+* [Launch](#launch)
 * [Status](#status)
 * [License](#license)
 * [Contact](#contact)
@@ -54,6 +55,10 @@ When watching a movie with Polish subtitles on a system without Polish language 
 # Setup
 
 Clone the repository to a folder on your computer and import it in your favourite IDE.
+
+# Launch
+
+Copy the executable .jar file from the *release/* folder and double click it.
 
 # Status
 Closed
