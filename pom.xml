@@ -6,7 +6,7 @@
 
     <groupId>groupId</groupId>
     <artifactId>SubsConverterFX</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0.0</version>
 
 
     <properties>
@@ -14,10 +14,6 @@
         <java.version>1.8</java.version>
         <version.maven.compiler>3.8.0</version.maven.compiler>
         <junit-platform.version>5.4.1</junit-platform.version>
-        <version.maven.site>3.6</version.maven.site>
-        <version.sonar>4.3</version.sonar>
-        <version.launch4j>1.7.25</version.launch4j>
-        <artifact.id>SncXmlReaderFXDB</artifact.id>
     </properties>
 
     <build>
@@ -65,4 +61,4 @@
 
     </dependencies>
 
-        </project>
+</project>

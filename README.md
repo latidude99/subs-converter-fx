@@ -1,9 +1,9 @@
 # SubsConverterFX
 
-[![](https://img.shields.io/badge/release-1.0-blue.svg)](https://github.com/latidude99/snc-xml-reader-fx-db/tree/master/release)
+[![](https://img.shields.io/badge/release-1.0-blue.svg)](https://github.com/latidude99/subs-converter-fx/tree/master/release)
 [![License: GPL v3](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![GitHub issues](https://img.shields.io/badge/issues-open%200-greenred.svg)](https://GitHub.com/latidude99/snc-xml-reader-fx-db/issues/)
-[![Maintenance](https://img.shields.io/badge/maintained-no-green.svg)](https://GitHub.com/latidude99/snc-xml-reader-fx-db/graphs/commit-activity)
+[![GitHub issues](https://img.shields.io/badge/issues-open%200-greenred.svg)](https://github.com/latidude99/subs-converter-fx/issues/)
+[![Maintenance](https://img.shields.io/badge/maintained-no-green.svg)](https://github.com/latidude99/subs-converter-fx/graphs/commit-activity)
 [![](https://img.shields.io/badge/%20$%20-buy%20me%20a%20coffe-yellow.svg)](https://www.buymeacoffee.com/zWn1I6bVf)
 
 
