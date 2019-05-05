@@ -18,7 +18,7 @@
 *  or write to: latidude99@gmail.com
 */
 
-package com.meridian99.subsconverter.app;
+package com.latidude99.subsconverter.app;
 	
 import java.io.IOException;
 
@@ -37,7 +37,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) throws IOException {
 		final String appName = "Subtitles Converter v1.0";
 		
-			Parent parent = (Parent) FXMLLoader.load(getClass().getResource("/com/meridian99/subsconverter/app/MainPane.fxml"));
+			Parent parent = (Parent) FXMLLoader.load(getClass().getResource("/com/latidude99/subsconverter/app/MainPane.fxml"));
 			Scene scene = new Scene(parent);
 			primaryStage.setScene(scene);
 			primaryStage.setTitle(appName);

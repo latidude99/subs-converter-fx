@@ -18,7 +18,7 @@
  *  or write to: latidude99@gmail.com
  */
 
-package com.meridian99.subsconverter.app;
+package com.latidude99.subsconverter.app;
 
 import javafx.stage.*;
 import javafx.scene.*;
