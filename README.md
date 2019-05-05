@@ -47,10 +47,14 @@ When watching a movie with Polish subtitles on a system without Polish language 
 - JavaFX 8
 - Scene Builder
 - started on Eclipse, then switched to IntelliJ IDEA. 
+- Maven version 3.60
 
 **Plugins and libraries**
+- Maven Surefire version 2.22.0
+- JUnit Jupiter API version 5.4.1
+- JUnit Jupiter Engine version 5.4.1
+- JUnit Jupiter Params version 5.4.1
 
-- JUnit5  version 5.4.1
 
 # Setup
 
