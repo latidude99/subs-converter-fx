@@ -20,7 +20,6 @@
 
 package com.meridian99.subsconverter.app;
 
-import java.awt.Desktop;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -55,13 +54,16 @@ import javafx.stage.FileChooser;
 
 
 /*
- *  Not the best processing flow (this is my first app ever):
+ *  Not the best processing flow (this is my very first app)
+ *  but left as is in case I forgot my beginnings in the future:
  *
  *  - Subtitles file is read into a list (textIn)
  *  - the list is converted into String and displayed (contentText)
  *  - when replacing, the string (contentText) is converted back to list (textIn)
  *  - then after replacing the list (textIn) is converted into String and displayed
  *  - then the list is saved as a new file
+ *
+ * ********************* And all of it in ONE class!*****************************
  */
 
 public class MainController implements Initializable{
@@ -331,26 +333,27 @@ public class MainController implements Initializable{
 	/*
 	 * Predefined character replacement
 	 */
-	private ArrayList<String> replaceAll(ArrayList<String> list){
-		if(textIn == null)
+	public List<String> replaceAll(List<String> list){
+		if(list == null)
 			return null;
-		textIn = (ArrayList<String>) list.stream()
+		List<String> listAfterReplaceAll = list.stream()
 			.map(s-> s.replaceAll("ą", "a").replaceAll("ę", "e")
 			.replaceAll("ó", "o").replaceAll("ł", "l")
 			.replaceAll("ń", "n").replaceAll("ż", "z")
 			.replaceAll("ź", "z").replaceAll("ć", "c")
 			.replaceAll("ś", "s").replaceAll("Ł", "L")
+            .replaceAll("Ą", "A").replaceAll("Ę", "E")
 			.replaceAll("Ż", "Z").replaceAll("Ź", "Z")
 			.replaceAll("Ć", "C").replaceAll("Ś", "S")
-			.replaceAll("Ó", "O"))
+			.replaceAll("Ó", "O").replaceAll("Ń", "N"))
 			.collect(Collectors.toList());
-		return textIn;
+		return listAfterReplaceAll;
 	}
 
 	/*
 	 * Manual character replacement
 	 */
-	private void replaceSingle(ArrayList<String> list){
+	public void replaceSingle(ArrayList<String> list){
 		if(textIn != null)
 		textIn = (ArrayList<String>) list.stream()
 			.map(s-> s.replaceAll(textReplace.getText(), textWith.getText()))
@@ -358,7 +361,7 @@ public class MainController implements Initializable{
 		labelDone.setText("Done!");
 	}
 			
-	private String textInToContent(List<String> list){
+	public String textInToContent(List<String> list){
 		StringBuilder content = new StringBuilder();
 		for(String s: list){
 			content.append(s);
@@ -368,7 +371,7 @@ public class MainController implements Initializable{
 		return content.toString();
 	}
 		
-	private void contentToTextIn(){
+	public void contentToTextIn(){
 		String newline = System.getProperty("line.separator");
 		String content = contentText.getText();
 		boolean hasNewLine = content.contains(newline);
