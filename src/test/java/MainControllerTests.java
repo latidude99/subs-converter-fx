@@ -1,5 +1,3 @@
-package test.java;
-
 import com.meridian99.subsconverter.app.MainController;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
