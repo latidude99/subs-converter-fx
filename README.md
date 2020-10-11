@@ -7,8 +7,8 @@
 [![](https://img.shields.io/badge/%20$%20-buy%20me%20a%20coffe-yellow.svg)](https://www.buymeacoffee.com/zWn1I6bVf)
 
 
+Replaces all the Polish diacritic characters by the closest ASCII equivalent.
 
-A UKHO Standard Navigation Chart reader with an option to display charts' coverage.
 ## Table of contents
 * [General Info](#general-info)
 * [Screenshots](#screenshots)
